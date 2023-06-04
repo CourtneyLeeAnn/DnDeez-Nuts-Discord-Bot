@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Source the .env file
+set -a # automatically export all variables
+source .env
+set +a # stop exporting variables
+
 # read the file into a variable
 config_template=$(<template.config.json)
 
