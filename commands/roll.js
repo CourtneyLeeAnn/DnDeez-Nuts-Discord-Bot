@@ -11,14 +11,27 @@ module.exports = {
 	async execute(interaction) {
 		let dice = interaction.options.getString('dice');
 		let numbers = dice.split("d");
-		if numbers = 0
-		then numbers
-		var random = getRandomInt(numbers[1])
+		let numberOfDie = numbers[0];
+		let numberOfSides = numbers[1];
 
-    	let response = `You rolled a ${random}`;
-		await interaction.reply(response);
+		if(numberOfDie === "") {
+			let random = rollDie(numberOfSides);
+
+			let response = `You rolled ${dice} and got ${random}`;
+			await interaction.reply(response);
+		} else {
+			let rolls = [];
+			for(let i=0; i<parseInt(numberOfDie); i++) {
+				rolls.push(rollDie(numberOfSides));
+			}
+
+			let random = rolls.join(",");
+			let response = `You rolled ${dice} and got ${random}`;
+			await interaction.reply(response);
+		}
 	},
 };
-function getRandomInt(max) {
+
+function rollDie(max) {
 	return Math.floor(Math.random() * max);
 }
