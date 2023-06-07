@@ -34,6 +34,7 @@ module.exports = {
 			for (let i = 0; i < rolls.length; i++) {
 				total += rolls[i];
 			}
+			total += parseInt(dexterity)
 			let response = `You rolled ${dice} and got ${total}`;
 			await interaction.reply(response);
 		}
